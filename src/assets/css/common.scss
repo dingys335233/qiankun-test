@@ -1,0 +1,7 @@
+@import "./theme.scss";
+.hover {
+  cursor: pointer;
+  &:hover {
+    color: $mainColor;
+  }
+}
