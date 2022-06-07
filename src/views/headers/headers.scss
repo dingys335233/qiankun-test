@@ -25,6 +25,18 @@
     }
     .headers-title {
       margin-right: 10px;
+      position: relative;
+    }
+    .headers-logout {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      background: #000;
+      width: 100%;
+      border-radius: 2px;
+      border: 1px solid #ccc;
+      text-align: center;
+      cursor: pointer;
     }
   }
   .headers-navigations {

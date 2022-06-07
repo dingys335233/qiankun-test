@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import loginService from '@/services/index.js';
 export default {
   name: 'login',
   data() {
@@ -38,6 +39,15 @@ export default {
     // 登录成功！
     login() {
       this.$router.push({path: '/home'});
+      loginService.login({userName:this.loginForm.userName, password: this.loginForm.password}).then(res => {
+        if (res.data.code === 0) {
+          this.$message.success(res.data.message);
+          this.$store.commit('setUserName', res.data.userName);
+          this.$router.push({path: '/home'});
+        } else {
+          this.$message.error(res.data.message);
+        }
+      });
     }
   }
 };

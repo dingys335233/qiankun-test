@@ -5,8 +5,11 @@ module.exports = {
   env: { // 运行环境
     browser: true, // 浏览器环境
   },
+  extends: [
+    'plugin:vue/recommended'
+  ],
   parser: 'babel-eslint', // 制定解析器：babel-eslint是围绕Babel解析器的包装器使其与eslint兼容。
-  parserOption: { // eslint解析器配置项
+  parserOptions: { // eslint解析器配置项
     sourceType: 'module' // 指定js的导入方式，默认script，module是指模块导入。
   },
   plugins:
@@ -21,6 +24,6 @@ module.exports = {
     'arrow-parent': 0, // 关掉箭头函数必须使用圆括号
     'space-before-function-paren': 0, // 关掉function的圆括号之前必须有空格
     'quotes': [2, 'single'], // 强制使用一致的单引号
-    'semi': [2, 'never'] // 分号
+    'semi': [2, 'always'] // 分号
   }
 };

@@ -1,6 +1,6 @@
 const { defineConfig } = require('@vue/cli-service');
 const resolve = dir => require('path').join(__dirname, dir);
-
+let baseUrl = process.env.VUE_APP_BASEURL;
 module.exports = defineConfig({
   publicPath: './', // 静态资源地址
   outputDir: 'dist', // 生产环境构建文件的目录
@@ -9,17 +9,17 @@ module.exports = defineConfig({
   productionSourceMap: false, // 生产环境不需要source map，设置为false加速生产环境的构建
 
   devServer: {
+    // publicPath: baseUrl,
     proxy: {
       '/api': {
         target: 'http://localhost:5213',
-        changeOrigin: true,
+        changeOrigin:true,
         secure: false,
-        ws: true,
-        pathRewrite: { '^/api': '' } // 请求数据路径别名
+        ws: true
       }
     },
     host: 'localhost',
-    port: '5213',
+    port: '5210',
     open: true,
     https: false
   }, // 代理服务器，前后端不在一个主机上，需要在开发环境下降API请求代理到服务器。

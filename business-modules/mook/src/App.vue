@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <router-link to="/about">ssssss</router-link>
-    <router-view/>
+    <!-- {{$store.state.userInfo.name}} -->
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
 

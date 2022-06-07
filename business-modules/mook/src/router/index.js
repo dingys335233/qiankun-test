@@ -1,34 +1,32 @@
 import HomeView from '../views/HomeView.vue';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-// if (window.__POWERED_BY_QIANKUN__) {
-//   microPath = '/mook';
-// }
-// let microPath = '/';
+
+let microPath = '';
+if (window.__POWERED_BY_QIANKUN__) {
+  microPath = '/mook';
+}
+
 Vue.use(VueRouter);
 const routes = [
   {
-    path: '/',
+    path: microPath + '/',
     name: 'home',
     component: HomeView
   },
   {
-    path: '/about',
+    path:  microPath + '/home/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  },
+  {
+    path: microPath + '/Application',
+    name: 'application',
+    component: () => import(/* webpackChunkName: "about" */ '../views/application.vue')
   }
 ]
 
-// const router = new VueRouter({
-//   routes
-// })
-
 const router = new VueRouter({
-  mode: 'history',
-  base: '/mook',
   routes
 })
 

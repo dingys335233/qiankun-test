@@ -2,11 +2,20 @@ const name = require('./package');
 module.exports = {
   assetsDir: 'static',
   devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5213',
+        changeOrigin:true,
+        secure: false,
+        ws: true
+      }
+    },
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
-    port: 60001
+    port: 60009
   },
+  
   configureWebpack: {
     output: {
       library: `${name}-[name]`,

@@ -3,20 +3,25 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-
+import actions from './actions';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 Vue.config.productionTip = false
-
+Vue.use(ElementUI);
 // 新增：用于保存vue实例
 let instance = null;
 
 /** * 新增： * 渲染函数 * 两种情况：主应用生命周期钩子中运行 / 微应用单独启动时运行 */
-function render() {
-// 挂载应用
+function render(props = {}) {
+  if (props) actions.setActions(props);
+  const { container } = props;
+  // 挂载应用
   instance = new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount(window.__POWERED_BY_QIANKUN__ ? '#mook' : '#app');}
+    router,
+    store,
+    render: (h) => h(App),
+  }).$mount(container ? container.querySelector('#app') : '#app')
+}
 
 
 /**
@@ -34,6 +39,7 @@ export async function bootstrap() {
 * 应用每次进入都会调用 mount 方法，通常我们在这里触发应用的渲染方法
 */
 export async function mount(props) {
+
   console.log("VueMicroApp mount", props);
   render(props);
 }
